@@ -1,0 +1,10 @@
+<div [class]="uiService.classNames('app', { hovered: true }, [this.uiService.getTheme()])">
+  <nav class="flex flex-row">
+    <div><a routerLink="main">Главная</a></div>
+    <div><a routerLink="about">О Нас</a></div>
+    <button (click)="changeTheme()">Тема</button>
+  </nav>
+
+  <router-outlet />
+  sdfg
+</div>
