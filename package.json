@@ -66,6 +66,7 @@
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jasmine": "^4.2.2",
     "eslint-plugin-storybook": "^10.3.0",
+    "storybook": "^10.3.0",
     "jsdom": "^27.1.0",
     "prettier": "^3.8.1",
     "serve": "^14.2.6",

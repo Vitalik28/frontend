@@ -217,7 +217,7 @@
         },
         {
             "name": "GlobalErrorStateService",
-            "id": "injectable-GlobalErrorStateService-6d8cfebb74c20542064bb3107d136c0c7169774388e51d4efa1aaa75e092455a9f1874525047c9c12a80e65d56a5d234e822f8a56e974da5c0b4cd3c4a9a3b2b",
+            "id": "injectable-GlobalErrorStateService-a9a6d196f1e4c89d9fba3777ee919a5d091a2b06bbd69b49228841c28d6786b5e97ea24c618156e85f351115e18180c8fbcf004bd83f9326587982800b918465",
             "file": "src/shared/services/error/global-error-state.service.ts",
             "properties": [
                 {
@@ -283,7 +283,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable, signal } from '@angular/core';\n\n@Injectable({ providedIn: 'root' })\nexport class GlobalErrorStateService {\n  readonly error = signal<unknown | null>(null);\n\n  set(error: unknown) {\n    this.error.set(error);\n  }\n\n  clear() {\n    this.error.set(null);\n  }\n}\n\n",
+            "sourceCode": "import { Injectable, signal } from '@angular/core';\n\n@Injectable({ providedIn: 'root' })\nexport class GlobalErrorStateService {\n  readonly error = signal<unknown | null>(null);\n\n  set(error: unknown) {\n    this.error.set(error);\n  }\n\n  clear() {\n    this.error.set(null);\n  }\n}\n",
             "extends": [],
             "type": "injectable"
         },
@@ -1242,7 +1242,7 @@
             "extends": [
                 "ButtonComponent"
             ],
-            "templateData": "<div class=\"theme-switcher\">\r\n  <app-button [label]=\"'Тема'\" (buttonClick)=\"changeTheme()\" [loading]=\"true\"></app-button>\r\n</div>\r\n"
+            "templateData": "<div class=\"theme-switcher\">\r\n  <app-button [label]=\"'Тема'\" (buttonClick)=\"changeTheme()\"></app-button>\r\n</div>\r\n"
         }
     ],
     "modules": [],
