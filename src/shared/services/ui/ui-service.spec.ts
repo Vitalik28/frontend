@@ -11,7 +11,7 @@ describe('UiService', () => {
     TestBed.configureTestingModule({});
     const storageProto = Object.getPrototypeOf(window.localStorage) as Storage;
     vi.spyOn(storageProto, 'getItem').mockReturnValue(null);
-    vi.spyOn(storageProto, 'setItem').mockImplementation(() => {});
+    vi.spyOn(storageProto, 'setItem').mockImplementation(() => undefined);
     service = TestBed.inject(UiService);
   });
 

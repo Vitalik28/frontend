@@ -73,8 +73,8 @@ describe('ErrorBoundaryComponent', () => {
     expect(boundary.errorMessage('x')).toBe('x');
     expect(boundary.errorMessage({ a: 1 })).toBe('{"a":1}');
 
-    const circular: any = {};
-    circular.self = circular;
+    const circular: Record<string, unknown> = {};
+    circular['self'] = circular;
     expect(boundary.errorMessage(circular)).toBe('Unknown error');
   });
 
