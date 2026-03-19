@@ -1,0 +1,10 @@
+@if (!error()) {
+  <ng-content></ng-content>
+} @else {
+  <section class="error-boundary">
+    <h2>Something went wrong</h2>
+    <p class="message">{{ errorMessage(error()) }}</p>
+    <button type="button" class="retry" (click)="reset()">Try again</button>
+  </section>
+}
+

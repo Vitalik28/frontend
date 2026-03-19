@@ -1,14 +1,19 @@
 import { Routes } from '@angular/router';
-import { MainPageComponent } from './pages/main-page.component/main-page.component';
-import { AboutPageComponent } from './pages/about-page.component/about-page.component';
 
 export const routes: Routes = [
   {
     path: 'main',
-    component: MainPageComponent,
+    loadComponent: () =>
+      import('pages/main-page.component/main-page.component').then((m) => m.MainPageComponent),
   },
   {
     path: 'about',
-    component: AboutPageComponent,
+    loadComponent: () =>
+      import('pages/about-page.component/about-page.component').then((m) => m.AboutPageComponent),
+  },
+  {
+    path: '**',
+
+    redirectTo: 'main',
   },
 ];

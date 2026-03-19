@@ -1,0 +1,13 @@
+<button
+  [class]="uiService.classNames('btn', {}, [uiService.getTheme()])"
+  [type]="type"
+  [disabled]="disabled"
+  (click)="onClickHandler($event)"
+>
+  @if (loading) {
+    <div class="spinner">
+      <app-spinner></app-spinner>
+    </div>
+  }
+  {{ label }}
+</button>

@@ -1,0 +1,2461 @@
+{
+    "pipes": [],
+    "interfaces": [],
+    "injectables": [
+        {
+            "name": "BoundaryErrorHandler",
+            "id": "injectable-BoundaryErrorHandler-52cb41b6218d6ec43217836de7aeb89746fc84b866b18854b4e6573f9c36fc4379f6f2517d4712ec40cc0fe93fdb8bd037c6d26f0022f526ef982af3b18405d7",
+            "file": "src/shared/error-boundary/boundary-error-handler.ts",
+            "properties": [
+                {
+                    "name": "parent",
+                    "defaultValue": "inject(ErrorHandler, { optional: true, skipSelf: true })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 8,
+                    "modifierKind": [
+                        123,
+                        148
+                    ]
+                },
+                {
+                    "name": "state",
+                    "defaultValue": "inject(BoundaryStateService)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 7,
+                    "modifierKind": [
+                        123,
+                        148
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "handleError",
+                    "args": [
+                        {
+                            "name": "error",
+                            "type": "unknown",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 10,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "error",
+                            "type": "unknown",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { ErrorHandler, Injectable, inject } from '@angular/core';\n\nimport { BoundaryStateService } from './boundary-state.service';\n\n@Injectable()\nexport class BoundaryErrorHandler implements ErrorHandler {\n  private readonly state = inject(BoundaryStateService);\n  private readonly parent = inject(ErrorHandler, { optional: true, skipSelf: true });\n\n  handleError(error: unknown): void {\n    this.state.setError(error);\n    this.parent?.handleError(error);\n  }\n}\n",
+            "extends": [],
+            "type": "injectable"
+        },
+        {
+            "name": "BoundaryStateService",
+            "id": "injectable-BoundaryStateService-15300bc0ddc2b05b61571599a821adf4f04c816e6e19d3300de38043e2dbb1635204e924b37b33f249976f677dd2c3715e77ee192c39f5b82f3d906c407db6e1",
+            "file": "src/shared/error-boundary/boundary-state.service.ts",
+            "properties": [
+                {
+                    "name": "error",
+                    "defaultValue": "signal<unknown | null>(null)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 5,
+                    "modifierKind": [
+                        148
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "clear",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 11,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "setError",
+                    "args": [
+                        {
+                            "name": "error",
+                            "type": "unknown",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 7,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "error",
+                            "type": "unknown",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable, signal } from '@angular/core';\n\n@Injectable()\nexport class BoundaryStateService {\n  readonly error = signal<unknown | null>(null);\n\n  setError(error: unknown) {\n    this.error.set(error);\n  }\n\n  clear() {\n    this.error.set(null);\n  }\n}\n",
+            "extends": [],
+            "type": "injectable"
+        },
+        {
+            "name": "GlobalErrorHandler",
+            "id": "injectable-GlobalErrorHandler-2521de11b4948317dc6a3f6be5a7f28cdb97dcc08ab6ef4223dea6dde892f6d9ddd3efb8a00c25176377f65f2dea96273a772d15d0a8926d9a90b50aec6757c5",
+            "file": "src/shared/services/error/global-error-handler.ts",
+            "properties": [
+                {
+                    "name": "state",
+                    "defaultValue": "inject(GlobalErrorStateService)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 7,
+                    "modifierKind": [
+                        123,
+                        148
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "handleError",
+                    "args": [
+                        {
+                            "name": "error",
+                            "type": "unknown",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 9,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "error",
+                            "type": "unknown",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { ErrorHandler, Injectable, inject } from '@angular/core';\n\nimport { GlobalErrorStateService } from './global-error-state.service';\n\n@Injectable()\nexport class GlobalErrorHandler implements ErrorHandler {\n  private readonly state = inject(GlobalErrorStateService);\n\n  handleError(error: unknown): void {\n    console.log(error);\n\n    this.state.set(error);\n    console.error(error);\n  }\n}\n",
+            "extends": [],
+            "type": "injectable"
+        },
+        {
+            "name": "GlobalErrorStateService",
+            "id": "injectable-GlobalErrorStateService-6d8cfebb74c20542064bb3107d136c0c7169774388e51d4efa1aaa75e092455a9f1874525047c9c12a80e65d56a5d234e822f8a56e974da5c0b4cd3c4a9a3b2b",
+            "file": "src/shared/services/error/global-error-state.service.ts",
+            "properties": [
+                {
+                    "name": "error",
+                    "defaultValue": "signal<unknown | null>(null)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 5,
+                    "modifierKind": [
+                        148
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "clear",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 11,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "set",
+                    "args": [
+                        {
+                            "name": "error",
+                            "type": "unknown",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 7,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "error",
+                            "type": "unknown",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable, signal } from '@angular/core';\n\n@Injectable({ providedIn: 'root' })\nexport class GlobalErrorStateService {\n  readonly error = signal<unknown | null>(null);\n\n  set(error: unknown) {\n    this.error.set(error);\n  }\n\n  clear() {\n    this.error.set(null);\n  }\n}\n\n",
+            "extends": [],
+            "type": "injectable"
+        },
+        {
+            "name": "UiService",
+            "id": "injectable-UiService-6efe20311dae7d4453cb1a51f5640baa88fc4627e5eeddbf4fa3940d9df8c13fb2366fbf7064af5768ff70b4f796b2c667817490daa8cee907f2f9c6bc8a14a2",
+            "file": "src/shared/services/ui/ui-service.ts",
+            "properties": [
+                {
+                    "name": "theme",
+                    "defaultValue": "signal<string>('light')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 10,
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "classNames",
+                    "args": [
+                        {
+                            "name": "cls",
+                            "type": "string",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "mods",
+                            "type": "Mods",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "defaultValue": "{}"
+                        },
+                        {
+                            "name": "additional",
+                            "type": "string[]",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "defaultValue": "[]"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 29,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        125
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "cls",
+                            "type": "string",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "mods",
+                            "type": "Mods",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "defaultValue": "{}",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "additional",
+                            "type": "string[]",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "defaultValue": "[]",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getTheme",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 16,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
+                    "name": "setTheme",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 20,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        125
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable, signal } from '@angular/core';\nimport { ThemeEnum } from '../../model/enum/theme.enum';\n\ntype Mods = Record<string, boolean | string>;\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class UiService {\n  private theme = signal<string>('light');\n\n  constructor() {\n    this.theme.set(localStorage.getItem('theme') ?? 'light');\n  }\n\n  public getTheme(): string {\n    return this.theme();\n  }\n\n  public setTheme(): void {\n    if (this.theme() === ThemeEnum.LIGHT) {\n      this.theme.set(ThemeEnum.DARK);\n    } else {\n      this.theme.set(ThemeEnum.LIGHT);\n    }\n    localStorage.setItem('theme', this.theme());\n  }\n\n  public classNames(cls: string, mods: Mods = {}, additional: string[] = []): string {\n    return [\n      cls,\n      ...additional,\n      ...Object.entries(mods)\n        .filter(([, value]) => Boolean(value))\n        .map(([className]) => className),\n    ].join(' ');\n  }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 10
+            },
+            "extends": [],
+            "type": "injectable"
+        }
+    ],
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [],
+    "components": [
+        {
+            "name": "AboutPageComponent",
+            "id": "component-AboutPageComponent-4e3755d9fe87571d03054201d1af4902fa9d98e5fc5dc0020fb50c5ecb99e965234c9a60d3b58baf117234f849b64ca7af7a0e13aaca5f7007ef9b20fb865e77",
+            "file": "src/pages/about-page.component/about-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-about-page.component",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./about-page.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n@Component({\n  selector: 'app-about-page.component',\n  imports: [],\n  templateUrl: './about-page.component.html',\n  styleUrl: './about-page.component.scss',\n})\nexport class AboutPageComponent {}\n",
+            "styleUrl": "./about-page.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<p>about-page.component works!</p>\r\n"
+        },
+        {
+            "name": "App",
+            "id": "component-App-560352a977f6d558a81ef9b8f927587ac1a79304a356ec746023cefdbb5a2fe64f77db0261a2e921a3bab545e59d4561871af89809b5ae4f09909463da72dc16",
+            "file": "src/app/app.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-root",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./app.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "uiService",
+                    "defaultValue": "inject(UiService)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [
+                {
+                    "name": "RouterOutlet"
+                },
+                {
+                    "name": "NavbarComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "SidebarComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "ErrorBoundaryComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, inject } from '@angular/core';\nimport { RouterOutlet } from '@angular/router';\nimport { ErrorBoundaryComponent } from 'shared/error-boundary/error-boundary.component';\nimport { UiService } from 'shared/services/ui/ui-service';\nimport { NavbarComponent } from 'widgets/navbar/navbar.component';\nimport { SidebarComponent } from 'widgets/sidebar/sidebar.component';\n\n@Component({\n  selector: 'app-root',\n  imports: [RouterOutlet, NavbarComponent, SidebarComponent, ErrorBoundaryComponent],\n  templateUrl: './app.html',\n  styleUrl: './app.scss',\n})\nexport class App {\n  uiService = inject(UiService);\n}\n",
+            "styleUrl": "./app.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div [class]=\"uiService.classNames('app', { hovered: true }, [this.uiService.getTheme()])\">\r\n  <app-navbar></app-navbar>\r\n  <main class=\"content-page\">\r\n    <app-sidebar></app-sidebar>\r\n    <div class=\"page-wrapper\">\r\n      <app-error-boundary>\r\n        <router-outlet></router-outlet>\r\n      </app-error-boundary>\r\n    </div>\r\n  </main>\r\n</div>\r\n"
+        },
+        {
+            "name": "ButtonComponent",
+            "id": "component-ButtonComponent-d476f38d7eb9002ae037759627cb8daab296b0b9a399146ba8abbfae0472602bb3c7b2744cd692931c642b382fa0d966b34a5927f7145cbb6c78f8631168771d",
+            "file": "src/shared/button/button.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-button",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./button.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 16,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "icon",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "iconColor",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 22,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "iconPosition",
+                    "defaultValue": "'left'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 20,
+                    "type": "\"left\" | \"right\"",
+                    "decorators": []
+                },
+                {
+                    "name": "iconSize",
+                    "defaultValue": "'medium'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "\"small\" | \"medium\" | \"large\"",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "loading",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 18,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'button'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "\"button\" | \"submit\" | \"reset\"",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "buttonClick",
+                    "defaultValue": "new EventEmitter<MouseEvent>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
+                    "type": "EventEmitter<MouseEvent>"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "uiService",
+                    "defaultValue": "inject(UiService)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "onClickHandler",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "MouseEvent",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 24,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "MouseEvent",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [
+                {
+                    "name": "SpinnerComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, EventEmitter, inject, Input, Output } from '@angular/core';\nimport { UiService } from 'shared/services/ui/ui-service';\nimport { SpinnerComponent } from 'shared/spinner/spinner.component';\n\n@Component({\n  selector: 'app-button',\n  imports: [SpinnerComponent],\n  templateUrl: './button.component.html',\n  styleUrl: './button.component.scss',\n})\nexport class ButtonComponent {\n  uiService = inject(UiService);\n\n  @Input() label = '';\n  @Input() type: 'button' | 'submit' | 'reset' = 'button';\n  @Input() disabled = false;\n  @Output() buttonClick: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();\n  @Input() loading = false;\n  @Input() icon = '';\n  @Input() iconPosition: 'left' | 'right' = 'left';\n  @Input() iconSize: 'small' | 'medium' | 'large' = 'medium';\n  @Input() iconColor = '';\n\n  onClickHandler(event: MouseEvent): void {\n    this.buttonClick.emit(event);\n  }\n}\n",
+            "styleUrl": "./button.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<button\r\n  [class]=\"uiService.classNames('btn', {}, [uiService.getTheme()])\"\r\n  [type]=\"type\"\r\n  [disabled]=\"disabled\"\r\n  (click)=\"onClickHandler($event)\"\r\n>\r\n  @if (loading) {\r\n    <div class=\"spinner\">\r\n      <app-spinner></app-spinner>\r\n    </div>\r\n  }\r\n  {{ label }}\r\n</button>\r\n"
+        },
+        {
+            "name": "ErrorBoundaryComponent",
+            "id": "component-ErrorBoundaryComponent-6370e6330a7a5bddcafbc5fef4294f7b490b9fa77aef486c6985fd382fc672e47f91cd5a6d2d145b89a9598d235888d80a83c03bf8e6f98b4918689c149d977e",
+            "file": "src/shared/error-boundary/error-boundary.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-error-boundary",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./error-boundary.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "error",
+                    "defaultValue": "this.state.error",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 14,
+                    "modifierKind": [
+                        148
+                    ]
+                },
+                {
+                    "name": "state",
+                    "defaultValue": "inject(GlobalErrorStateService)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 12,
+                    "modifierKind": [
+                        123,
+                        148
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "errorMessage",
+                    "args": [
+                        {
+                            "name": "err",
+                            "type": "unknown",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 20,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "err",
+                            "type": "unknown",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "reset",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, inject } from '@angular/core';\n\nimport { GlobalErrorStateService } from 'shared/services/error/global-error-state.service';\n\n@Component({\n  selector: 'app-error-boundary',\n  standalone: true,\n  templateUrl: './error-boundary.component.html',\n  styleUrl: './error-boundary.component.scss',\n})\nexport class ErrorBoundaryComponent {\n  private readonly state = inject(GlobalErrorStateService);\n\n  readonly error = this.state.error;\n\n  reset() {\n    this.state.clear();\n  }\n\n  errorMessage(err: unknown): string {\n    if (err instanceof Error) return err.message || err.name;\n    if (typeof err === 'string') return err;\n    try {\n      return JSON.stringify(err);\n    } catch {\n      return 'Unknown error';\n    }\n  }\n}\n",
+            "styleUrl": "./error-boundary.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "@if (!error()) {\n  <ng-content></ng-content>\n} @else {\n  <section class=\"error-boundary\">\n    <h2>Something went wrong</h2>\n    <p class=\"message\">{{ errorMessage(error()) }}</p>\n    <button type=\"button\" class=\"retry\" (click)=\"reset()\">Try again</button>\n  </section>\n}\n\n"
+        },
+        {
+            "name": "MainPageComponent",
+            "id": "component-MainPageComponent-69fb06b88d673077a7e398f0274212efe2434a1fc9f514b3b0a95297ddf6fbb94da006b4eaf437525e4613b41934365de967447da0ed0a659ebc468f34ef7e25",
+            "file": "src/pages/main-page.component/main-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-main-page.component",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./main-page.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "crash",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "never",
+                    "typeParameters": [],
+                    "line": 11,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-main-page.component',\n  imports: [],\n\n  templateUrl: './main-page.component.html',\n  styleUrl: './main-page.component.scss',\n})\nexport class MainPageComponent {\n  crash(): never {\n    throw new Error('ErrorBoundary test crash');\n  }\n}\n",
+            "styleUrl": "./main-page.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<p>main-page.component works!</p>\r\n\r\n<button type=\"button\" (click)=\"crash()\">Crash (test ErrorBoundary)</button>\r\n"
+        },
+        {
+            "name": "NavbarComponent",
+            "id": "component-NavbarComponent-ff579eee14c6d182ae474cce660fd1f0c50f3975650c851438e5d1dc20b26b0033708aebee45a56e6416cb752e63a8920f7de0e2cc07a5c024df25d89a82623a",
+            "file": "src/widgets/navbar/navbar.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-navbar",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./navbar.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "uiService",
+                    "defaultValue": "inject(UiService)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [
+                {
+                    "name": "RouterLink"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, inject } from '@angular/core';\nimport { RouterLink } from '@angular/router';\nimport { UiService } from 'shared/services/ui/ui-service';\n\n@Component({\n  selector: 'app-navbar',\n  imports: [RouterLink],\n\n  templateUrl: './navbar.component.html',\n  styleUrl: './navbar.component.scss',\n})\nexport class NavbarComponent {\n  uiService = inject(UiService);\n}\n",
+            "styleUrl": "./navbar.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<nav [class]=\"uiService.classNames('navbar')\">\r\n  <div><a routerLink=\"/main\">Главная</a></div>\r\n  <div><a routerLink=\"about\">О Нас</a></div>\r\n</nav>\r\n"
+        },
+        {
+            "name": "SidebarComponent",
+            "id": "component-SidebarComponent-51f40e4be7c4c0ff18d7aa927450b9f81613769b58c6078dd5d4732138e3cd68bbfc2b063e8a18588d6b6305983bf3c03f86d4b15c911d6838f0fcc5f8654ab3",
+            "file": "src/widgets/sidebar/sidebar.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-sidebar",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./sidebar.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "isShowSidebar",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                },
+                {
+                    "name": "uiService",
+                    "defaultValue": "inject(UiService)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [
+                {
+                    "name": "ThemeSwitcherComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "RouterLink"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, inject } from '@angular/core';\nimport { RouterLink } from '@angular/router';\nimport { UiService } from 'shared/services/ui/ui-service';\nimport { ThemeSwitcherComponent } from 'shared/theme-switcher/theme-switcher.component';\n\n@Component({\n  selector: 'app-sidebar',\n  imports: [ThemeSwitcherComponent, RouterLink],\n  templateUrl: './sidebar.component.html',\n  styleUrl: './sidebar.component.scss',\n})\nexport class SidebarComponent {\n  uiService = inject(UiService);\n\n  isShowSidebar = false;\n}\n",
+            "styleUrl": "./sidebar.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<aside [class]=\"uiService.classNames('sidebar', { open: isShowSidebar })\">\r\n  <div class=\"top\">\r\n    <button class=\"toggle\" type=\"button\" (click)=\"isShowSidebar = !isShowSidebar\">\r\n      @if (isShowSidebar) {\r\n        <span>←</span>\r\n      } @else {\r\n        <span>→</span>\r\n      }\r\n    </button>\r\n  </div>\r\n\r\n  <nav class=\"nav\">\r\n    <a class=\"item\" routerLink=\"/main\">Главная</a>\r\n    <a class=\"item\" routerLink=\"/about\">О Нас</a>\r\n  </nav>\r\n\r\n  <div class=\"bottom\">\r\n    <app-theme-switcher></app-theme-switcher>\r\n  </div>\r\n</aside>\r\n"
+        },
+        {
+            "name": "SpinnerComponent",
+            "id": "component-SpinnerComponent-38b46872358194acc79808f515e3f6808d7851b078599cdd8f479e3d59efa886339126861784aae2052f459a99423b158c75ab6c8d2433d52c380ead8ce98b0c",
+            "file": "src/shared/spinner/spinner.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-spinner",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./spinner.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-spinner',\n  imports: [],\n  templateUrl: './spinner.component.html',\n  styleUrl: './spinner.component.scss',\n})\nexport class SpinnerComponent {}\n",
+            "styleUrl": "./spinner.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<span class=\"loader\"></span>\r\n"
+        },
+        {
+            "name": "ThemeSwitcherComponent",
+            "id": "component-ThemeSwitcherComponent-19798a3bef21ef7bf73367a0880ea3a6baffdb957deba4dcd7dc8820660926647a2e94ee415e4fe09a5e9cc129a57cef89e81ab6ed02dd13efc7c62e29f46e37",
+            "file": "src/shared/theme-switcher/theme-switcher.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-theme-switcher",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./theme-switcher.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 16,
+                    "type": "boolean",
+                    "decorators": [],
+                    "inheritance": {
+                        "file": "ButtonComponent"
+                    }
+                },
+                {
+                    "name": "icon",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "string",
+                    "decorators": [],
+                    "inheritance": {
+                        "file": "ButtonComponent"
+                    }
+                },
+                {
+                    "name": "iconColor",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 22,
+                    "type": "string",
+                    "decorators": [],
+                    "inheritance": {
+                        "file": "ButtonComponent"
+                    }
+                },
+                {
+                    "name": "iconPosition",
+                    "defaultValue": "'left'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 20,
+                    "type": "\"left\" | \"right\"",
+                    "decorators": [],
+                    "inheritance": {
+                        "file": "ButtonComponent"
+                    }
+                },
+                {
+                    "name": "iconSize",
+                    "defaultValue": "'medium'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "\"small\" | \"medium\" | \"large\"",
+                    "decorators": [],
+                    "inheritance": {
+                        "file": "ButtonComponent"
+                    }
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "string",
+                    "decorators": [],
+                    "inheritance": {
+                        "file": "ButtonComponent"
+                    }
+                },
+                {
+                    "name": "loading",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 18,
+                    "type": "boolean",
+                    "decorators": [],
+                    "inheritance": {
+                        "file": "ButtonComponent"
+                    }
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'button'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "\"button\" | \"submit\" | \"reset\"",
+                    "decorators": [],
+                    "inheritance": {
+                        "file": "ButtonComponent"
+                    }
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "buttonClick",
+                    "defaultValue": "new EventEmitter<MouseEvent>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
+                    "type": "EventEmitter<MouseEvent>",
+                    "inheritance": {
+                        "file": "ButtonComponent"
+                    }
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "uiService",
+                    "defaultValue": "inject(UiService)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 12,
+                    "inheritance": {
+                        "file": "ButtonComponent"
+                    }
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "changeTheme",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 11,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onClickHandler",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "MouseEvent",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 24,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "MouseEvent",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ],
+                    "inheritance": {
+                        "file": "ButtonComponent"
+                    }
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [
+                {
+                    "name": "ButtonComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { ButtonComponent } from 'shared/button/button.component';\n\n@Component({\n  selector: 'app-theme-switcher',\n  imports: [ButtonComponent],\n  templateUrl: './theme-switcher.component.html',\n  styleUrl: './theme-switcher.component.scss',\n})\nexport class ThemeSwitcherComponent extends ButtonComponent {\n  changeTheme(): void {\n    this.uiService.setTheme();\n  }\n}\n",
+            "styleUrl": "./theme-switcher.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [
+                "ButtonComponent"
+            ],
+            "templateData": "<div class=\"theme-switcher\">\r\n  <app-button [label]=\"'Тема'\" (buttonClick)=\"changeTheme()\" [loading]=\"true\"></app-button>\r\n</div>\r\n"
+        }
+    ],
+    "modules": [],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "appConfig",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/app.config.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "ApplicationConfig",
+                "defaultValue": "{\n  providers: [\n    provideBrowserGlobalErrorListeners(),\n    provideRouter(routes),\n    {\n      provide: ErrorHandler,\n      useClass: GlobalErrorHandler,\n    },\n  ],\n}"
+            },
+            {
+                "name": "config",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": ".storybook/main.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "StorybookConfig",
+                "defaultValue": "{\n  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx|mdx)'],\n  addons: [],\n  framework: {\n    name: '@storybook/angular',\n    options: {},\n  },\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/pages/about-page.component/about-page.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/pages/main-page.component/main-page.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/shared/error-boundary/error-boundary.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: () => ({\n    template: `\n      <app-error-boundary>\n        <p>Content inside boundary</p>\n      </app-error-boundary>\n    `,\n  }),\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/shared/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    label: 'Click me',\n  },\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/shared/spinner/spinner.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/shared/theme-switcher/theme-switcher.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/widgets/navbar/navbar.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/widgets/sidebar/sidebar.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Disabled",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/shared/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    label: 'Disabled',\n    disabled: true,\n  },\n}"
+            },
+            {
+                "name": "Loading",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/shared/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    label: 'Loading',\n    loading: true,\n  },\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/pages/about-page.component/about-page.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<AboutPageComponent>",
+                "defaultValue": "{\n  component: AboutPageComponent,\n  title: 'Pages/About',\n  tags: ['autodocs'],\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/pages/main-page.component/main-page.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<MainPageComponent>",
+                "defaultValue": "{\n  component: MainPageComponent,\n  title: 'Pages/Main',\n  tags: ['autodocs'],\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/shared/error-boundary/error-boundary.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<ErrorBoundaryComponent>",
+                "defaultValue": "{\n  component: ErrorBoundaryComponent,\n  title: 'Shared/ErrorBoundary',\n  tags: ['autodocs'],\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/shared/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<ButtonComponent>",
+                "defaultValue": "{\n  component: ButtonComponent,\n  title: 'Shared/Button',\n  tags: ['autodocs'],\n  argTypes: {\n    label: { control: 'text' },\n    disabled: { control: 'boolean' },\n    loading: { control: 'boolean' },\n  },\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/shared/spinner/spinner.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<SpinnerComponent>",
+                "defaultValue": "{\n  component: SpinnerComponent,\n  title: 'Shared/Spinner',\n  tags: ['autodocs'],\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/shared/theme-switcher/theme-switcher.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<ThemeSwitcherComponent>",
+                "defaultValue": "{\n  component: ThemeSwitcherComponent,\n  title: 'Shared/ThemeSwitcher',\n  tags: ['autodocs'],\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/widgets/navbar/navbar.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<NavbarComponent>",
+                "defaultValue": "{\n  component: NavbarComponent,\n  title: 'Widgets/Navbar',\n  tags: ['autodocs'],\n  decorators: [\n    applicationConfig({\n      providers: [provideRouter([])],\n    }),\n  ],\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/widgets/sidebar/sidebar.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<SidebarComponent>",
+                "defaultValue": "{\n  component: SidebarComponent,\n  title: 'Widgets/Sidebar',\n  tags: ['autodocs'],\n  decorators: [\n    applicationConfig({\n      providers: [provideRouter([])],\n    }),\n  ],\n}"
+            },
+            {
+                "name": "preview",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": ".storybook/preview.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Preview",
+                "defaultValue": "{\n  decorators: [\n    componentWrapperDecorator((story) => `<div class=\"app light\">${story}</div>`),\n  ],\n  parameters: {\n    layout: 'centered',\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n  },\n}"
+            },
+            {
+                "name": "routes",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/app.routes.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Routes",
+                "defaultValue": "[\n  {\n    path: 'main',\n    loadComponent: () =>\n      \"import('pages/main-page.component/main-page.component').then((m) => m.MainPageComponent)\",\n  },\n  {\n    path: 'about',\n    loadComponent: () =>\n      \"import('pages/about-page.component/about-page.component').then((m) => m.AboutPageComponent)\",\n  },\n  {\n    path: '**',\n\n    redirectTo: 'main',\n  },\n]"
+            }
+        ],
+        "functions": [],
+        "typealiases": [
+            {
+                "name": "Mods",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "Record<string | boolean | string>",
+                "file": "src/shared/services/ui/ui-service.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<AboutPageComponent>",
+                "file": "src/pages/about-page.component/about-page.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<MainPageComponent>",
+                "file": "src/pages/main-page.component/main-page.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<ErrorBoundaryComponent>",
+                "file": "src/shared/error-boundary/error-boundary.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<ButtonComponent>",
+                "file": "src/shared/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<SpinnerComponent>",
+                "file": "src/shared/spinner/spinner.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<ThemeSwitcherComponent>",
+                "file": "src/shared/theme-switcher/theme-switcher.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<NavbarComponent>",
+                "file": "src/widgets/navbar/navbar.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<SidebarComponent>",
+                "file": "src/widgets/sidebar/sidebar.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            }
+        ],
+        "enumerations": [
+            {
+                "name": "ThemeEnum",
+                "childs": [
+                    {
+                        "name": "DARK",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "value": "dark"
+                    },
+                    {
+                        "name": "LIGHT",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "value": "light"
+                    }
+                ],
+                "ctype": "miscellaneous",
+                "subtype": "enum",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "file": "src/shared/model/enum/theme.enum.ts"
+            }
+        ],
+        "groupedVariables": {
+            "src/app/app.config.ts": [
+                {
+                    "name": "appConfig",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/app.config.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ApplicationConfig",
+                    "defaultValue": "{\n  providers: [\n    provideBrowserGlobalErrorListeners(),\n    provideRouter(routes),\n    {\n      provide: ErrorHandler,\n      useClass: GlobalErrorHandler,\n    },\n  ],\n}"
+                }
+            ],
+            ".storybook/main.ts": [
+                {
+                    "name": "config",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": ".storybook/main.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "StorybookConfig",
+                    "defaultValue": "{\n  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx|mdx)'],\n  addons: [],\n  framework: {\n    name: '@storybook/angular',\n    options: {},\n  },\n}"
+                }
+            ],
+            "src/pages/about-page.component/about-page.component.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/pages/about-page.component/about-page.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/pages/about-page.component/about-page.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<AboutPageComponent>",
+                    "defaultValue": "{\n  component: AboutPageComponent,\n  title: 'Pages/About',\n  tags: ['autodocs'],\n}"
+                }
+            ],
+            "src/pages/main-page.component/main-page.component.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/pages/main-page.component/main-page.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/pages/main-page.component/main-page.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<MainPageComponent>",
+                    "defaultValue": "{\n  component: MainPageComponent,\n  title: 'Pages/Main',\n  tags: ['autodocs'],\n}"
+                }
+            ],
+            "src/shared/error-boundary/error-boundary.component.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/shared/error-boundary/error-boundary.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: () => ({\n    template: `\n      <app-error-boundary>\n        <p>Content inside boundary</p>\n      </app-error-boundary>\n    `,\n  }),\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/shared/error-boundary/error-boundary.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<ErrorBoundaryComponent>",
+                    "defaultValue": "{\n  component: ErrorBoundaryComponent,\n  title: 'Shared/ErrorBoundary',\n  tags: ['autodocs'],\n}"
+                }
+            ],
+            "src/shared/button/button.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/shared/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    label: 'Click me',\n  },\n}"
+                },
+                {
+                    "name": "Disabled",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/shared/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    label: 'Disabled',\n    disabled: true,\n  },\n}"
+                },
+                {
+                    "name": "Loading",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/shared/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    label: 'Loading',\n    loading: true,\n  },\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/shared/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<ButtonComponent>",
+                    "defaultValue": "{\n  component: ButtonComponent,\n  title: 'Shared/Button',\n  tags: ['autodocs'],\n  argTypes: {\n    label: { control: 'text' },\n    disabled: { control: 'boolean' },\n    loading: { control: 'boolean' },\n  },\n}"
+                }
+            ],
+            "src/shared/spinner/spinner.component.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/shared/spinner/spinner.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/shared/spinner/spinner.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<SpinnerComponent>",
+                    "defaultValue": "{\n  component: SpinnerComponent,\n  title: 'Shared/Spinner',\n  tags: ['autodocs'],\n}"
+                }
+            ],
+            "src/shared/theme-switcher/theme-switcher.component.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/shared/theme-switcher/theme-switcher.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/shared/theme-switcher/theme-switcher.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<ThemeSwitcherComponent>",
+                    "defaultValue": "{\n  component: ThemeSwitcherComponent,\n  title: 'Shared/ThemeSwitcher',\n  tags: ['autodocs'],\n}"
+                }
+            ],
+            "src/widgets/navbar/navbar.component.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/widgets/navbar/navbar.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/widgets/navbar/navbar.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<NavbarComponent>",
+                    "defaultValue": "{\n  component: NavbarComponent,\n  title: 'Widgets/Navbar',\n  tags: ['autodocs'],\n  decorators: [\n    applicationConfig({\n      providers: [provideRouter([])],\n    }),\n  ],\n}"
+                }
+            ],
+            "src/widgets/sidebar/sidebar.component.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/widgets/sidebar/sidebar.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/widgets/sidebar/sidebar.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<SidebarComponent>",
+                    "defaultValue": "{\n  component: SidebarComponent,\n  title: 'Widgets/Sidebar',\n  tags: ['autodocs'],\n  decorators: [\n    applicationConfig({\n      providers: [provideRouter([])],\n    }),\n  ],\n}"
+                }
+            ],
+            ".storybook/preview.ts": [
+                {
+                    "name": "preview",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": ".storybook/preview.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Preview",
+                    "defaultValue": "{\n  decorators: [\n    componentWrapperDecorator((story) => `<div class=\"app light\">${story}</div>`),\n  ],\n  parameters: {\n    layout: 'centered',\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n  },\n}"
+                }
+            ],
+            "src/app/app.routes.ts": [
+                {
+                    "name": "routes",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/app.routes.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Routes",
+                    "defaultValue": "[\n  {\n    path: 'main',\n    loadComponent: () =>\n      \"import('pages/main-page.component/main-page.component').then((m) => m.MainPageComponent)\",\n  },\n  {\n    path: 'about',\n    loadComponent: () =>\n      \"import('pages/about-page.component/about-page.component').then((m) => m.AboutPageComponent)\",\n  },\n  {\n    path: '**',\n\n    redirectTo: 'main',\n  },\n]"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {
+            "src/shared/model/enum/theme.enum.ts": [
+                {
+                    "name": "ThemeEnum",
+                    "childs": [
+                        {
+                            "name": "DARK",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "value": "dark"
+                        },
+                        {
+                            "name": "LIGHT",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "value": "light"
+                        }
+                    ],
+                    "ctype": "miscellaneous",
+                    "subtype": "enum",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "file": "src/shared/model/enum/theme.enum.ts"
+                }
+            ]
+        },
+        "groupedTypeAliases": {
+            "src/shared/services/ui/ui-service.ts": [
+                {
+                    "name": "Mods",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "Record<string | boolean | string>",
+                    "file": "src/shared/services/ui/ui-service.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "src/pages/about-page.component/about-page.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<AboutPageComponent>",
+                    "file": "src/pages/about-page.component/about-page.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "src/pages/main-page.component/main-page.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<MainPageComponent>",
+                    "file": "src/pages/main-page.component/main-page.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "src/shared/error-boundary/error-boundary.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<ErrorBoundaryComponent>",
+                    "file": "src/shared/error-boundary/error-boundary.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "src/shared/button/button.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<ButtonComponent>",
+                    "file": "src/shared/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "src/shared/spinner/spinner.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<SpinnerComponent>",
+                    "file": "src/shared/spinner/spinner.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "src/shared/theme-switcher/theme-switcher.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<ThemeSwitcherComponent>",
+                    "file": "src/shared/theme-switcher/theme-switcher.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "src/widgets/navbar/navbar.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<NavbarComponent>",
+                    "file": "src/widgets/navbar/navbar.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "src/widgets/sidebar/sidebar.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<SidebarComponent>",
+                    "file": "src/widgets/sidebar/sidebar.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ]
+        }
+    },
+    "routes": {
+        "name": "<root>",
+        "kind": "module",
+        "children": [
+            {
+                "name": "main",
+                "kind": "route-path",
+                "filename": "src/app/app.routes.ts"
+            },
+            {
+                "name": "about",
+                "kind": "route-path",
+                "filename": "src/app/app.routes.ts"
+            },
+            {
+                "name": "**",
+                "kind": "route-path",
+                "filename": "src/app/app.routes.ts"
+            },
+            {
+                "name": "main",
+                "kind": "route-redirect",
+                "filename": "src/app/app.routes.ts"
+            }
+        ]
+    },
+    "coverage": {
+        "count": 0,
+        "status": "low",
+        "files": [
+            {
+                "filePath": ".storybook/main.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "config",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": ".storybook/preview.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "preview",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/app.config.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "appConfig",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/app.routes.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "routes",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/app.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "App",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/pages/about-page.component/about-page.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/pages/about-page.component/about-page.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/pages/about-page.component/about-page.component.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/pages/about-page.component/about-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AboutPageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/pages/main-page.component/main-page.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/pages/main-page.component/main-page.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/pages/main-page.component/main-page.component.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/pages/main-page.component/main-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "MainPageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/button/button.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ButtonComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/12",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Disabled",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Loading",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/button/button.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/error-boundary/boundary-error-handler.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "BoundaryErrorHandler",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/error-boundary/boundary-state.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "BoundaryStateService",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/error-boundary/error-boundary.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/error-boundary/error-boundary.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/error-boundary/error-boundary.component.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/error-boundary/error-boundary.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ErrorBoundaryComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/services/error/global-error-handler.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "GlobalErrorHandler",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/services/error/global-error-state.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "GlobalErrorStateService",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/services/ui/ui-service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "UiService",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/services/ui/ui-service.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Mods",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/spinner/spinner.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/spinner/spinner.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/spinner/spinner.component.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/spinner/spinner.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SpinnerComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/theme-switcher/theme-switcher.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/theme-switcher/theme-switcher.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/theme-switcher/theme-switcher.component.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/shared/theme-switcher/theme-switcher.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ThemeSwitcherComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/13",
+                "status": "low"
+            },
+            {
+                "filePath": "src/widgets/navbar/navbar.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/widgets/navbar/navbar.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/widgets/navbar/navbar.component.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/widgets/navbar/navbar.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "NavbarComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/widgets/sidebar/sidebar.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/widgets/sidebar/sidebar.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/widgets/sidebar/sidebar.component.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/widgets/sidebar/sidebar.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SidebarComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            }
+        ]
+    }
+}

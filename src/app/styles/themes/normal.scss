@@ -1,5 +1,14 @@
 .app.light {
-  --bg-color: #dfdfeb;
-  --primary-color: #00074b;
-  --secondary-color: #280bcc;
+  --bg-color: #f6f7fb;
+  --primary-color: #0f172a;
+  --secondary-color: #334155;
+  --muted-color: #64748b;
+  --border-color: rgba(15, 23, 42, 0.12);
+
+  --surface-1: rgba(255, 255, 255, 0.7);
+  --surface-2: rgba(255, 255, 255, 0.92);
+
+  --accent: #4f46e5;
+  --accent-contrast: #ffffff;
+  --accent-soft: rgba(79, 70, 229, 0.12);
 }

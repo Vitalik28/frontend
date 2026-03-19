@@ -1,0 +1,20 @@
+<aside [class]="uiService.classNames('sidebar', { open: isShowSidebar })">
+  <div class="top">
+    <button class="toggle" type="button" (click)="isShowSidebar = !isShowSidebar">
+      @if (isShowSidebar) {
+        <span>←</span>
+      } @else {
+        <span>→</span>
+      }
+    </button>
+  </div>
+
+  <nav class="nav">
+    <a class="item" routerLink="/main">Главная</a>
+    <a class="item" routerLink="/about">О Нас</a>
+  </nav>
+
+  <div class="bottom">
+    <app-theme-switcher></app-theme-switcher>
+  </div>
+</aside>
