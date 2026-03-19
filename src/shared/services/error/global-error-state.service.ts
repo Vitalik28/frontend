@@ -12,4 +12,3 @@ export class GlobalErrorStateService {
     this.error.set(null);
   }
 }
-

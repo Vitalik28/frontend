@@ -90,4 +90,3 @@ describe('ErrorBoundaryComponent', () => {
     expect(boundary.errorMessage(err)).toBe('CustomName');
   });
 });
-

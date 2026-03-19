@@ -25,7 +25,9 @@ describe('UiService', () => {
     });
 
     it('includes modifier keys when value is truthy', () => {
-      expect(service.classNames('base', { on: true, off: false, str: 'x' }, [])).toBe('base on str');
+      expect(service.classNames('base', { on: true, off: false, str: 'x' }, [])).toBe(
+        'base on str',
+      );
     });
 
     it('omits modifier keys when value is falsy', () => {
@@ -42,7 +44,9 @@ describe('UiService', () => {
     });
 
     it('toggles from DARK to LIGHT and persists', () => {
-      (localStorage.getItem as unknown as ReturnType<typeof vi.fn>).mockReturnValueOnce(ThemeEnum.DARK);
+      (localStorage.getItem as unknown as ReturnType<typeof vi.fn>).mockReturnValueOnce(
+        ThemeEnum.DARK,
+      );
       const darkService = new UiService();
 
       darkService.setTheme();

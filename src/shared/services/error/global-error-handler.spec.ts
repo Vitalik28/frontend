@@ -21,4 +21,3 @@ describe('GlobalErrorHandler', () => {
     expect(state.error()).toBe(err);
   });
 });
-
