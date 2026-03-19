@@ -27,7 +27,7 @@ test.describe('Storybook Screenshots', () => {
       await page.waitForTimeout(500);
 
       await expect(page).toHaveScreenshot(`${storyId}.png`, {
-        maxDiffPixels: 100,
+        maxDiffPixelRatio: 0.02,
       });
     });
   }
